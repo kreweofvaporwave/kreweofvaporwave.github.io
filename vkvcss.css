@@ -65,6 +65,7 @@ p1 {}
 .bodytext {
     margin-left: 10%;
     padding: 1px 16px;
+    position:relative;
 }
 
 
