@@ -43,7 +43,7 @@ h2 {
     list-style-type: none;
   margin: auto;
   padding: 0;
-  max-width: 15%;
+  max-width: 20%;
   height: 100%; /* Full height */
   position: absolute; /* Make it stick, even on scroll */
   overflow: auto; /* Enable scrolling if the sidenav has too much content */
@@ -65,6 +65,7 @@ p1 {}
 .bodytext {
     margin-left: 10%;
     padding: 1px 16px;
+    position:relative;
 }
 
 
