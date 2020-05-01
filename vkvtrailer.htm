@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Coming Soon</title>
+<link rel="stylesheet" href="vkvcss.css" />
+         <script src="vkvjs.js" type="text/javascript"></script> 
+    <h1><img class="logo" src=images/vkv2019logo.png alt="Krewe of Vaporwave"></h1>
+</head>
+    <body onload="randombg()" id="random" text="white">
+<h2>Coming Soon</h2>
+<br>
+<ul id="nav_container">
+    <li><a href="vkvmardi.htm"><img class="button" src="images/mg.jpg" height=120 width=120 alt="Mardi Gras"></a></li>
+    <li><a href="vkvvideo.htm"><img class="button" src="images/Video.jpg" height=120  width=120 alt="Video"></a></li>
+    <li><a href="vkvinstall.htm"><img class="button" src="images/installations.jpg" height=120 width=120 alt="Installation"></a></li>
+    <li><a href="vkvpress.htm"><img class="button" src="images/press.jpg" height=120 width=120 alt="Press"></a></li>
+    <li><a href="vkvmembers.htm"><img class="button" src="images/members.jpg" height=120 width=120 alt="Members"></a></li>
+    <li><a href="vkvcv.htm"><img class="button" src="images/menu9.jpg" height=120 width=120 alt="About/CV"></a></li>
+    <li><a href="vkvstore.htm"><img class="button" src="images/menu8.jpg" height=120 width=120 alt="Store"></a></li>
+    <li><a href="vkvsoon.htm"><img class="button" src="images/menu10.jpg" height=120 width=120 alt="Coming Soon"></a></li>
+
+    </ul>
+    <!-- Add a placeholder for the Twitch embed -->
+    <div id="twitch-embed"></div>
+
+    <!-- Load the Twitch embed script -->
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+    <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+    <script type="text/javascript">
+      new Twitch.Embed("twitch-embed", {
+        width: 854,
+        height: 480,
+        channel: "kreweofvaporwave",
+        // only needed if your site is also embedded on embed.example.com and othersite.example.com 
+        parent: ["embed.example.com", "othersite.example.com"]
+      });
+    </script>
+        
+</body>
+</html>
