@@ -23,42 +23,5 @@
         Coming Soon
     </div>
     
-    <script>
-        window.lat = 29.9511;
-    window.lng = -90.0715;
-        
-            function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(updatePosition);
-        }
-      
-        return null;
-    };
-        
-            function currentLocation() {
-      return {lat:window.lat, lng:window.lng};
-    };
-        
-        
-    function updatePosition(position) {
-      if (position) {
-        window.lat = position.coords.latitude;
-        window.lng = position.coords.longitude;
-      }
-    }
-    
-    setInterval(function(){updatePosition(getLocation());}, 10000);
-        
-    var pnChannel = "map2-channel";
-
-    var pubnub = new PubNub({
-      publishKey:   'pub-c-681537bf-ca85-4e22-82de-e85b3bb8c8f8',
-      subscribeKey: 'sub-c-65141286-8c89-11ea-8dc6-429c98eb9bb1'
-    });
-    
-setInterval(function() {
-  pubnub.publish({channel:pnChannel, message:currentLocation()});
-}, 5000);
-    </script>
 </body>
 </html>
