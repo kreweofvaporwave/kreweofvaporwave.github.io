@@ -19,27 +19,24 @@
     <li><a href="vkvstore.htm"><img class="button" src="images/store.jpg" height=120 width=120 alt="Store"></a></li>
     <li><a href="vkvsoon.htm"><img class="button" src="images/cs.jpg" height=120 width=120 alt="Coming Soon"></a></li>
     </ul>
-    <div class="bodytext">
-        Coming Soon
-    </div>
     
+    <div class="bodytext">
+      <h1>Live Device Location</h1>
+      <div id="map-canvas" style="width:600px;height:400px"></div>
+    </div>
+
     <script>
-        window.lat = 29.9511;
+    window.lat = 29.9511;
     window.lng = -90.0715;
-        
-            function getLocation() {
+
+    function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(updatePosition);
         }
       
         return null;
     };
-        
-            function currentLocation() {
-      return {lat:window.lat, lng:window.lng};
-    };
-        
-        
+
     function updatePosition(position) {
       if (position) {
         window.lat = position.coords.latitude;
@@ -48,17 +45,43 @@
     }
     
     setInterval(function(){updatePosition(getLocation());}, 10000);
-        
+      
+    function currentLocation() {
+      return {lat:window.lat, lng:window.lng};
+    };
+
+    var map;
+    var mark;
+
+    var initialize = function() {
+      map  = new google.maps.Map(document.getElementById('map-canvas'), {center:{lat:lat,lng:lng},zoom:12});
+      mark = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+    };
+
+    window.initialize = initialize;
+
+    var redraw = function(payload) {
+      lat = payload.message.lat;
+      lng = payload.message.lng;
+
+      map.setCenter({lat:lat, lng:lng, alt:0});
+      mark.setPosition({lat:lat, lng:lng, alt:0});
+    };
+
     var pnChannel = "map2-channel";
 
     var pubnub = new PubNub({
       publishKey:   'pub-c-681537bf-ca85-4e22-82de-e85b3bb8c8f8',
       subscribeKey: 'sub-c-65141286-8c89-11ea-8dc6-429c98eb9bb1'
     });
-    
-setInterval(function() {
-  pubnub.publish({channel:pnChannel, message:currentLocation()});
-}, 5000);
+
+    pubnub.subscribe({channels: [pnChannel]});
+    pubnub.addListener({message:redraw});
+
+    setInterval(function() {
+      pubnub.publish({channel:pnChannel, message:currentLocation()});
+    }, 5000);
     </script>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDyo6yqM4NXe-i6bMnYggrl6APFO-1o_Dw&callback=initialize"></script>
 </body>
 </html>
