@@ -24,6 +24,8 @@
     </div>
     
     <script>
+        window.lat = 29.9511;
+    window.lng = -90.0715;
         
             function getLocation() {
         if (navigator.geolocation) {
@@ -36,6 +38,16 @@
             function currentLocation() {
       return {lat:window.lat, lng:window.lng};
     };
+        
+        
+    function updatePosition(position) {
+      if (position) {
+        window.lat = position.coords.latitude;
+        window.lng = position.coords.longitude;
+      }
+    }
+    
+    setInterval(function(){updatePosition(getLocation());}, 10000);
         
     var pnChannel = "map2-channel";
 
