@@ -24,7 +24,20 @@
     </div>
     
     <script>
-    var pnChannel = "map3-channel";
+        
+            function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(updatePosition);
+        }
+      
+        return null;
+    };
+        
+            function currentLocation() {
+      return {lat:window.lat, lng:window.lng};
+    };
+        
+    var pnChannel = "map2-channel";
 
     var pubnub = new PubNub({
       publishKey:   'pub-c-681537bf-ca85-4e22-82de-e85b3bb8c8f8',
